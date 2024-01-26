@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Haiiiiii :3</title>
+		<script>
+			const user_language = navigator.language.split("-")[0]
+			
+			if (user_language === "de") {
+				window.location.href = "/de"
+				console.log("Redirecting to the DE version")
+			} else {
+				window.location.href = "/en"
+				console.log("Redirecting to the EN version")
+			}
+		</script>
+    </head>
+</html>
