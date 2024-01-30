@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+		<title>ToasterTerminal</title>
+		
+		<script>
+			const available_commands = ["about", "exit", "jobs", "contact", "help", "experience", "hire", "telegram", "clear"]
+			
+			const available_contacts = ["telegram"]
+			
+			const telegram_user_url = "https://t.me/ToasterWithTheBread"
+			const telegram_server_url = "https://t.me/ToasterWTB"
+			
+			const skills_list = [
+				"HTML - 6 years",
+				"JS - 5 years",
+				"React - 2 years",
+				"Svelte - 1 year",
+				"C++ - 2 years",
+				"Rust - 1 year",
+				"\n",
+				"Remote Administration - 2 years",
+				"Server Downtime Management - 2 years",
+				"\n",
+				"Management of a 5+ person team - 3 years",
+				"Coordination of meetings - 3 years"
+			]
+			
+			const past_jobs = [
+				"Automotive Mechanic Apprentice - 1 year",
+				"Bluu Cheats - 2 years",
+				"Eglo Development - Current"
+			]
+			
+			const about_array = [
+				"Hello! I am Kuiper (Cooper). I have been working as a Software Developer for about 6 years now. I am completely self taught.",
+				"From a young age I was surrounded by developers and builders, expecially through the hard points in my life, which I believe has shaped me into who I am today.",
+				"I am always working on new stuff, currently I am learning Rust and building the Eglo application for web, desktop, and mobile."
+			]
+			
+			const hire_array = [
+				"Hello! If you are considering hiring me you can get in contact with me via one of the available contact methods!",
+				"I charge by the hour and I am flexible on pricing as I enjoy working on code.",
+				"I am willing to work on code, servers, and system setup.",
+				"All of the work I do is remote and typically done over messaging, but I am also willing to work on call.",
+				"If you have any further questions feel free to send me a message and I will get back to you as soon as possible!"
+			]
+		</script>
+	</head>
+	<body>
+		<template id="greetings">
+ ______             __         
+/_  __/__  ___ ____/ /____ ____
+ / / / _ \/ _ `(_-< __/ -_) __/
+/_/  \___/\_,_/___|__/\__/_/   
+
+Enter help to view availabe commands  
+		</template>
+	</body>
+	<script>
+		function openInNewTab(href) {
+		  Object.assign(document.createElement('a'), {
+			target: '_blank',
+			rel: 'noopener noreferrer',
+			href: href,
+		  }).click();
+		}
+	
+	
+		$('body').terminal({
+			open: function(type, object) {
+				this.clear()
+				if (type === "contact" && object === "telegram") {
+					this.echo("Opening Telegram account")
+					openInNewTab(telegram_user_url)
+				} else {
+					this.echo("Invalid contact method")
+				}
+				this.echo("\n")
+			},
+		
+			help: function() {
+				this.clear()
+				this.echo("Here is the list of available commands \n")
+				for (const command of available_commands) {
+					this.echo(command);
+				}
+				this.echo("\n")
+			},
+			
+			experience: function() {
+				this.clear()
+				this.echo("Here is the (near) full list of my experience, I have been working for about 6 years \n")
+				for (const skill of skills_list) {
+					this.echo(skill);
+				}
+				this.echo("\n")
+			},
+			
+			telegram: function() {
+				this.clear()
+				this.echo("Opening Telegram server")
+				openInNewTab(telegram_server_url)
+				this.echo("\n")
+			},
+			
+			about: function() {
+				this.clear()
+				this.echo("This is a small section about me (Toaster!) and what I do \n")
+				for (const description of about_array) {
+					this.echo(description);
+				}
+				this.echo("\n")
+			},
+			
+			hire: function() {
+				this.clear()
+				this.echo("I am available for contract work, the section below gives further information \n")
+				for (const term of hire_array) {
+					this.echo(term);
+				}
+				this.echo("\n")
+			},
+			
+			contact: function() {
+				this.clear()
+				this.echo("Here are my available contact methods, you can type 'open contact [method]' open the method \n")
+				for (const method of available_contacts) {
+					this.echo(method);
+				}
+				this.echo("\n")
+			},
+			
+			jobs: function() {
+				this.clear()
+				this.echo("Here are my past jobs/opportunitys \n")
+				for (const job of past_jobs) {
+					this.echo(job);
+				}
+				this.echo("\n")
+			},
+			
+			exit: function() {
+				window.history.back()
+			},
+			
+		}, {
+            greetings: greetings.innerHTML,
+        });	
+	</script>
+</html>
